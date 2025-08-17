@@ -59,6 +59,12 @@
                 Sign In
               </button>
 
+              <!-- Error Message -->
+              <div *ngIf="errorMessage" class="alert alert-danger mb-3" role="alert">
+                <mat-icon class="me-2">error</mat-icon>
+                {{ errorMessage }}
+              </div>
+
               <!-- Loading -->
               <div *ngIf="loading" class="text-center">
                 <mat-spinner diameter="30"></mat-spinner>
@@ -69,7 +75,7 @@
           <mat-card-actions class="text-center">
             <p class="mb-0">
               Don't have an account? 
-              <a href="#" class="text-decoration-none fw-bold">Sign up</a>
+              <a routerLink="/login/register" class="text-decoration-none fw-bold">Sign up</a>
             </p>
           </mat-card-actions>
         </mat-card>
