@@ -34,10 +34,13 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { Spinner } from './components/spinner/spinner';
 
 @NgModule({
   declarations: [
     // Shared components will be declared here
+  
+    Spinner
   ],
   imports: [
     CommonModule,
@@ -112,7 +115,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatSnackBarModule,
     MatTableModule,
     MatSortModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    // Shared Components
+    Spinner
   ],
   providers: [
     // Shared services will be provided here

@@ -12,6 +12,7 @@ export class HomePage implements OnInit {
   tracks: ITrack[] = [];
   loading = true;
   error: string | null = null;
+  displayedColumns: string[] = ['trackId', 'name', 'composer', 'duration', 'price'];
 
   constructor(
     private tracksApiService: BlTracksApiService
@@ -48,9 +49,4 @@ export class HomePage implements OnInit {
     });
   }
 
-  public formatDuration(milliseconds: number): string {
-    const minutes = Math.floor(milliseconds / 60000);
-    const seconds = Math.floor((milliseconds % 60000) / 1000);
-    return `${minutes}:${seconds.toString().padStart(2, '0')}`;
-  }
 }

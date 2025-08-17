@@ -1,0 +1,38 @@
+<mat-card class="h-100">
+  <mat-card-header>
+    <div mat-card-avatar>
+      <mat-icon class="text-primary">music_note</mat-icon>
+    </div>
+    <mat-card-title class="text-truncate">{{ track.Name }}</mat-card-title>
+    <mat-card-subtitle class="text-truncate">{{ track.Composer || 'Unknown Artist' }}</mat-card-subtitle>
+  </mat-card-header>
+  
+  <mat-card-content>
+    <div class="d-flex justify-content-between align-items-center mb-2">
+      <small class="text-muted">Track ID</small>
+      <mat-chip>{{ track.TrackId }}</mat-chip>
+    </div>
+    
+    <div class="d-flex justify-content-between align-items-center mb-2">
+      <small class="text-muted">Duration</small>
+      <mat-chip color="accent">{{ formatDuration(track.Milliseconds) }}</mat-chip>
+    </div>
+    
+    <div class="d-flex justify-content-between align-items-center">
+      <small class="text-muted">Price</small>
+      <span class="fw-bold text-success fs-5">${{ track.UnitPrice }}</span>
+    </div>
+  </mat-card-content>
+  
+  <mat-card-actions class="d-flex justify-content-end">
+    <button mat-icon-button color="primary" matTooltip="Play Track">
+      <mat-icon>play_arrow</mat-icon>
+    </button>
+    <button mat-icon-button color="accent" matTooltip="Add to Cart">
+      <mat-icon>shopping_cart</mat-icon>
+    </button>
+    <button mat-icon-button matTooltip="More Info">
+      <mat-icon>info</mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>

@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { PagesRoutingModule } from './pages-routing.module';
 import { HomePage } from './home-page/home-page';
+import { SharedModule } from '../shared/shared.module';
+import { TracksModule } from './tracks/tracks.module';
 
 @NgModule({
   declarations: [
@@ -10,7 +12,9 @@ import { HomePage } from './home-page/home-page';
   ],
   imports: [
     CommonModule,
-    PagesRoutingModule
+    PagesRoutingModule,
+    SharedModule,
+    TracksModule
   ]
 })
 export class PagesModule { }
