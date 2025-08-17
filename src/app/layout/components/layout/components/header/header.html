@@ -1,34 +1,69 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <div class="container">
-    <a class="navbar-brand" href="#">
+<mat-toolbar color="primary" class="mat-elevation-2 fixed-top">
+  <div class="container-fluid d-flex align-items-center">
+    <!-- Brand -->
+    <span class="brand-title">
+      <mat-icon class="me-2">library_music</mat-icon>
       <strong>Chinook</strong>
-    </a>
+    </span>
     
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+    <!-- Spacer for desktop navigation -->
+    <span class="flex-grow-1 d-none d-md-block"></span>
     
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav me-auto">
-        <li class="nav-item">
-          <a class="nav-link active" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Products</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Categories</a>
-        </li>
-      </ul>
+    <!-- Desktop Navigation -->
+    <div class="d-none d-md-flex align-items-center">
+      <button mat-button routerLink="/" routerLinkActive="active-link">
+        <mat-icon class="me-1">home</mat-icon>
+        Home
+      </button>
+      <button mat-button>
+        <mat-icon class="me-1">shopping_bag</mat-icon>
+        Products
+      </button>
+      <button mat-button>
+        <mat-icon class="me-1">category</mat-icon>
+        Categories
+      </button>
       
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" href="#">Admin</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Login</a>
-        </li>
-      </ul>
+      <span class="mx-3">|</span>
+      
+      <button mat-button>
+        <mat-icon class="me-1">admin_panel_settings</mat-icon>
+        Admin
+      </button>
+      <button mat-raised-button color="accent" class="ms-2">
+        <mat-icon class="me-1">login</mat-icon>
+        Login
+      </button>
     </div>
+    
+    <!-- Mobile Menu Button -->
+    <button mat-icon-button class="d-md-none ms-auto" (click)="toggleMobileMenu()">
+      <mat-icon>menu</mat-icon>
+    </button>
   </div>
-</nav>
+</mat-toolbar>
+
+<!-- Mobile Navigation Menu -->
+<mat-nav-list *ngIf="isMobileMenuOpen" class="d-md-none mat-elevation-1">
+  <a mat-list-item routerLink="/" (click)="toggleMobileMenu()">
+    <mat-icon matListItemIcon>home</mat-icon>
+    <span matListItemTitle>Home</span>
+  </a>
+  <a mat-list-item (click)="toggleMobileMenu()">
+    <mat-icon matListItemIcon>shopping_bag</mat-icon>
+    <span matListItemTitle>Products</span>
+  </a>
+  <a mat-list-item (click)="toggleMobileMenu()">
+    <mat-icon matListItemIcon>category</mat-icon>
+    <span matListItemTitle>Categories</span>
+  </a>
+  <mat-divider></mat-divider>
+  <a mat-list-item (click)="toggleMobileMenu()">
+    <mat-icon matListItemIcon>admin_panel_settings</mat-icon>
+    <span matListItemTitle>Admin</span>
+  </a>
+  <a mat-list-item (click)="toggleMobileMenu()">
+    <mat-icon matListItemIcon>login</mat-icon>
+    <span matListItemTitle>Login</span>
+  </a>
+</mat-nav-list>

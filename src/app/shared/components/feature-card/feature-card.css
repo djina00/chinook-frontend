@@ -1,0 +1,16 @@
+.feature-card {
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  border: none;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15) !important;
+}
+
+.feature-mat-icon {
+  font-size: 48px !important;
+  height: 48px !important;
+  width: 48px !important;
+  color: #20c997 !important;
+}

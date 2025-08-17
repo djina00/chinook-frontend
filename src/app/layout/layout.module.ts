@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { Layout } from './components/layout/layout';
 import { Header } from './components/layout/components/header/header';
 import { Footer } from './components/layout/components/footer/footer';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { Footer } from './components/layout/components/footer/footer';
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    SharedModule
   ],
   exports: [
     Layout

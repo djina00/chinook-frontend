@@ -7,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrl: './header.css'
 })
 export class Header {
+  isMobileMenuOpen = false;
 
+  toggleMobileMenu(): void {
+    this.isMobileMenuOpen = !this.isMobileMenuOpen;
+  }
 }

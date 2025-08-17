@@ -1,7 +1,42 @@
 <div class="container-fluid">
+  <!-- Hero Section -->
+  <section class="hero-section bg-dark text-white py-5 mb-5">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-8">
+          <div class="hero-content">
+            <h1 class="display-4 fw-bold mb-3">
+              <span style="background: linear-gradient(135deg, #20c997, #198754); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Chinook Music</span> —
+            </h1>
+            <h2 class="h3 mb-4">Professional quality<br>music samples.</h2>
+            <p class="lead text-muted mb-4">
+              Discover our extensive collection of high-quality music tracks from various genres and artists.
+            </p>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="hero-stats">
+            <div class="stat-item mb-4 text-start">
+              <div class="stat-number display-4 fw-bold" style="background: linear-gradient(135deg, #9d4edd, #6c5ce7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">{{ tracks.length }}</div>
+              <div class="stat-label small text-light opacity-75">Samples in store</div>
+            </div>
+            <div class="stat-item mb-4 text-center">
+              <div class="stat-number display-4 fw-bold" style="background: linear-gradient(135deg, #9d4edd, #6c5ce7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">{{ tracks.length > 0 ? (tracks.length * 8) : 0 }}</div>
+              <div class="stat-label small text-light opacity-75">Vocal recordings</div>
+            </div>
+            <div class="stat-item text-end">
+              <div class="stat-number display-4 fw-bold" style="background: linear-gradient(135deg, #9d4edd, #6c5ce7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">100%</div>
+              <div class="stat-label small text-light opacity-75">Quality assurance</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <mat-toolbar color="primary" class="mb-4">
     <mat-icon>library_music</mat-icon>
-    <span class="ms-2">Chinook Music Tracks</span>
+    <span class="ms-2">Popular Tracks</span>
   </mat-toolbar>
 
   <!-- Loading State -->
@@ -10,7 +45,7 @@
   </div>
 
   <!-- Error State -->
-  <mat-card *ngIf="error" class="mb-4">
+  <mat-card *ngIf="error" class="mb-4" color="warn">
     <mat-card-content>
       <div class="d-flex align-items-center">
         <mat-icon color="warn" class="me-2">error</mat-icon>
@@ -21,19 +56,135 @@
 
   <!-- Tracks Display -->
   <div *ngIf="!loading && !error && tracks.length > 0">
-    <div class="d-flex justify-content-between align-items-center mb-4">
+    <!-- <div class="d-flex justify-content-between align-items-center mb-4">
       <h2 class="mb-0">Music Library</h2>
       <mat-chip-listbox>
         <mat-chip-option>{{ tracks.length }} tracks</mat-chip-option>
       </mat-chip-listbox>
-    </div>
+    </div> -->
     
     <div class="row g-3">
-      <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" *ngFor="let track of tracks">
+      <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12" *ngFor="let track of featuredTracks">
         <app-track-card [track]="track"></app-track-card>
       </div>
     </div>
   </div>
+
+  <!-- Genres Section -->
+  <section class="genres-section bg-dark text-white py-5 mt-5">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6">
+          <div class="genres-content">
+            <h2 class="display-5 fw-bold mb-3">Explore different genres</h2>
+            <p class="lead mb-4">
+              Our company offers music samples of various styles and genres.
+            </p>
+            <p class="text-muted mb-4">
+              Discover the perfect sound for your project from our extensive collection of professionally crafted music samples across multiple genres.
+            </p>
+            
+            <!-- Loading State -->
+            <div *ngIf="genresLoading" class="mb-4">
+              <app-spinner message="Loading genres..."></app-spinner>
+            </div>
+            
+            <!-- Error State -->
+            <mat-card *ngIf="genresError" class="mb-4" color="warn">
+              <mat-card-content>
+                <div class="d-flex align-items-center">
+                  <mat-icon color="warn" class="me-2">error</mat-icon>
+                  <span>{{ genresError }}</span>
+                </div>
+              </mat-card-content>
+            </mat-card>
+            
+            <!-- Genres Display -->
+            <div *ngIf="!genresLoading && !genresError && genres.length > 0" class="genres-grid">
+              <div class="d-flex flex-wrap gap-2 mb-3">
+                <mat-chip-listbox>
+                  <mat-chip-option *ngFor="let genre of featuredGenres" class="me-2 mb-2 genre-chip">
+                    {{ genre.Name }}
+                  </mat-chip-option>
+                </mat-chip-listbox>
+              </div>
+              <div class="mt-3">
+                <button mat-raised-button color="primary" class="d-flex align-items-center">
+                  <span>View all</span>
+                  <mat-icon class="ms-1">arrow_forward</mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <!-- Placeholder for image/visual content -->
+          <div class="genres-visual text-center">
+            <mat-icon style="font-size: 200px; color: #20c997;">music_note</mat-icon>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Notes Section -->
+  <section class="notes-section py-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+          <div class="text-center mb-5">
+            <h2 class="display-6 fw-bold mb-3">Why Choose Chinook Music?</h2>
+            <p class="lead text-muted">Professional quality meets creative excellence</p>
+          </div>
+          
+          <div class="row g-4">
+            <div class="col-md-4">
+              <app-feature-card 
+                icon="high_quality"
+                title="Premium Quality"
+                description="Every track is professionally mastered and ready for your projects. High-fidelity audio that meets industry standards.">
+              </app-feature-card>
+            </div>
+            
+            <div class="col-md-4">
+              <app-feature-card 
+                icon="library_music"
+                title="Vast Collection"
+                description="Explore thousands of tracks across multiple genres. From classical to electronic, find the perfect sound for any mood.">
+              </app-feature-card>
+            </div>
+            
+            <div class="col-md-4">
+              <app-feature-card 
+                icon="support_agent"
+                title="Expert Support"
+                description="Our team of music professionals is here to help you find exactly what you need for your creative projects.">
+              </app-feature-card>
+            </div>
+          </div>
+          
+          <div class="row mt-5">
+            <div class="col-12">
+              <mat-card class="p-4" style="background: linear-gradient(135deg, #9d4edd, #20c997); color: white;">
+                <div class="row align-items-center">
+                  <div class="col-lg-8">
+                    <h3 class="fw-bold mb-2 text-white">Start Your Musical Journey Today</h3>
+                    <p class="text-white opacity-75 mb-0">Join thousands of creators who trust Chinook Music for their audio needs. Quality music, exceptional service, endless possibilities.</p>
+                  </div>
+                  <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
+                    <button mat-raised-button color="accent" class="px-4 py-2">
+                      <mat-icon class="me-2">play_arrow</mat-icon>
+                      Explore Now
+                    </button>
+                  </div>
+                </div>
+              </mat-card>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- No Tracks State -->
   <mat-card *ngIf="!loading && !error && tracks.length === 0">

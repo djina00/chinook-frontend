@@ -1,0 +1,14 @@
+.brand-title {
+  display: flex;
+  align-items: center;
+  font-size: 1.25rem;
+}
+
+.active-link {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+mat-nav-list {
+  background-color: white;
+  border-top: 1px solid #e0e0e0;
+}

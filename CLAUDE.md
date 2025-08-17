@@ -14,6 +14,10 @@ This is an Angular 20 application called "chinook-frontendd" built with Angular 
 - `npm test` or `ng test` - Run unit tests with Karma
 - `npm run watch` or `ng build --watch --configuration development` - Build with file watching
 
+### Code Quality
+- **Prettier**: Configured with 100 character line width, single quotes, and Angular HTML parser
+- **No Linting**: Project currently has no ESLint or other linting configuration
+
 ### Angular CLI Commands
 - `ng generate component component-name` - Generate new component
 - `ng generate service service-name` - Generate new service
@@ -26,8 +30,9 @@ This is an Angular 20 application called "chinook-frontendd" built with Angular 
 - **Root Module**: `src/app/app-module.ts` - Main NgModule with SharedModule, LayoutModule, and NgBootstrap
 - **Root Component**: `src/app/app.ts` - Uses signals for reactive state (title signal)
 - **Routing**: `src/app/app-routing-module.ts` - Nested routing with Layout component wrapping pages
-- **Shared Module**: `src/app/shared/shared.module.ts` - Exports Angular Material modules, forms, and HTTP client
+- **Shared Module**: `src/app/shared/shared.module.ts` - Exports Angular Material modules, forms, HTTP client, and shared components (Spinner, FeatureCard)
 - **Layout Module**: `src/app/layout/layout.module.ts` - Contains header, footer, and main layout components
+- **Error Handling**: Global error listeners configured via `provideBrowserGlobalErrorListeners()`
 
 ### Key Configuration Details
 - **Non-standalone Components**: Project is configured with `standalone: false` for all generated components
@@ -62,6 +67,7 @@ When generating new components, they will automatically:
 - Use the `app` prefix
 
 ### Shared Resources
+- **Components**: Reusable components (Spinner, FeatureCard) are declared and exported by SharedModule
 - **Guards**: Place route guards in `src/app/shared/guards/`
 - **Interfaces**: Define TypeScript interfaces in `src/app/shared/interfaces/`
 - **Validators**: Custom form validators in `src/app/shared/validators/`
