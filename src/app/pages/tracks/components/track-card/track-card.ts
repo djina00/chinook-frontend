@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { ITrack } from '../../interfaces/i-track';
+import { TrackInfoBottomSheet } from '../../../../shared/components/track-info-bottom-sheet/track-info-bottom-sheet';
 
 @Component({
   selector: 'app-track-card',
@@ -10,9 +12,12 @@ import { ITrack } from '../../interfaces/i-track';
 export class TrackCard {
   @Input() track!: ITrack;
 
-  public formatDuration(milliseconds: number): string {
-    const minutes = Math.floor(milliseconds / 60000);
-    const seconds = Math.floor((milliseconds % 60000) / 1000);
-    return `${minutes}:${seconds.toString().padStart(2, '0')}`;
+  constructor(private bottomSheet: MatBottomSheet) {}
+
+  openTrackInfo(): void {
+    this.bottomSheet.open(TrackInfoBottomSheet, {
+      data: this.track,
+      panelClass: 'track-info-bottom-sheet'
+    });
   }
 }

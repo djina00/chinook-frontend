@@ -34,15 +34,22 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { Spinner } from './components/spinner/spinner';
 import { FeatureCard } from './components/feature-card/feature-card';
+import { DurationPipe } from './pipes/duration-pipe';
+import { TrackInfoBottomSheet } from './components/track-info-bottom-sheet/track-info-bottom-sheet';
+import { FileSizePipe } from './pipes/file-size-pipe';
 
 @NgModule({
   declarations: [
     // Shared components will be declared here
   
     Spinner,
-    FeatureCard
+    FeatureCard,
+    DurationPipe,
+    TrackInfoBottomSheet,
+    FileSizePipe
   ],
   imports: [
     CommonModule,
@@ -79,7 +86,8 @@ import { FeatureCard } from './components/feature-card/feature-card';
     MatSnackBarModule,
     MatTableModule,
     MatSortModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatBottomSheetModule
   ],
   exports: [
     // Export modules so they can be used by other modules
@@ -118,9 +126,14 @@ import { FeatureCard } from './components/feature-card/feature-card';
     MatTableModule,
     MatSortModule,
     MatPaginatorModule,
+    MatBottomSheetModule,
     // Shared Components
     Spinner,
-    FeatureCard
+    FeatureCard,
+    TrackInfoBottomSheet,
+    // Shared Pipes
+    DurationPipe,
+    FileSizePipe
   ],
   providers: [
     // Shared services will be provided here

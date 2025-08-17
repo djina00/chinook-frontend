@@ -5,10 +5,12 @@ import { PagesRoutingModule } from './pages-routing.module';
 import { HomePage } from './home-page/home-page';
 import { SharedModule } from '../shared/shared.module';
 import { TracksModule } from './tracks/tracks.module';
+import { Albums } from './albums/albums';
 
 @NgModule({
   declarations: [
-    HomePage
+    HomePage,
+    Albums
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,137 @@
+<div class="p-4">
+  <!-- Header -->
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h4 class="mb-0 d-flex align-items-center">
+      <mat-icon class="me-2">music_note</mat-icon>
+      Track Information
+    </h4>
+    <button mat-icon-button (click)="closeBottomSheet()" matTooltip="Close">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <!-- Track Details -->
+  <div class="row g-3">
+    <!-- Track Name -->
+    <div class="col-12">
+      <mat-card class="h-100">
+        <mat-card-content class="p-3">
+          <div class="d-flex align-items-center mb-2">
+            <mat-icon class="me-2 text-primary">library_music</mat-icon>
+            <h6 class="mb-0 text-muted">Track Name</h6>
+          </div>
+          <p class="h5 mb-0 fw-bold">{{ track.Name }}</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <!-- Composer -->
+    <div class="col-md-6">
+      <mat-card class="h-100">
+        <mat-card-content class="p-3">
+          <div class="d-flex align-items-center mb-2">
+            <mat-icon class="me-2 text-success">person</mat-icon>
+            <h6 class="mb-0 text-muted">Composer</h6>
+          </div>
+          <p class="mb-0">{{ track.Composer || 'Unknown' }}</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <!-- Album -->
+    <div class="col-md-6">
+      <mat-card class="h-100">
+        <mat-card-content class="p-3">
+          <div class="d-flex align-items-center mb-2">
+            <mat-icon class="me-2 text-info">album</mat-icon>
+            <h6 class="mb-0 text-muted">Album</h6>
+          </div>
+          <p class="mb-0 fw-semibold">{{ track.album?.Title || 'Unknown Album' }}</p>
+          @if (track.album?.artist) {
+            <small class="text-muted">by {{ track.album?.artist?.Name }}</small>
+          }
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <!-- Genre -->
+    <div class="col-md-6">
+      <mat-card class="h-100">
+        <mat-card-content class="p-3">
+          <div class="d-flex align-items-center mb-2">
+            <mat-icon class="me-2 text-warning">category</mat-icon>
+            <h6 class="mb-0 text-muted">Genre</h6>
+          </div>
+          @if (track.genre) {
+            <mat-chip color="accent">{{ track.genre.Name }}</mat-chip>
+          } @else {
+            <span class="text-muted">Unknown</span>
+          }
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <!-- Media Type -->
+    <div class="col-md-6">
+      <mat-card class="h-100">
+        <mat-card-content class="p-3">
+          <div class="d-flex align-items-center mb-2">
+            <mat-icon class="me-2 text-secondary">audiotrack</mat-icon>
+            <h6 class="mb-0 text-muted">Media Type</h6>
+          </div>
+          <p class="mb-0">{{ track.mediaType?.Name || 'Unknown' }}</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <!-- Duration -->
+    <div class="col-md-4">
+      <mat-card class="h-100">
+        <mat-card-content class="p-3">
+          <div class="d-flex align-items-center mb-2">
+            <mat-icon class="me-2 text-primary">schedule</mat-icon>
+            <h6 class="mb-0 text-muted">Duration</h6>
+          </div>
+          <p class="mb-0 h5 fw-bold">{{ track.Milliseconds | duration }}</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <!-- File Size -->
+    <div class="col-md-4">
+      <mat-card class="h-100">
+        <mat-card-content class="p-3">
+          <div class="d-flex align-items-center mb-2">
+            <mat-icon class="me-2 text-info">storage</mat-icon>
+            <h6 class="mb-0 text-muted">File Size</h6>
+          </div>
+          <p class="mb-0 h5 fw-bold">{{ track.Bytes | fileSize }}</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <!-- Price -->
+    <div class="col-md-4">
+      <mat-card class="h-100">
+        <mat-card-content class="p-3">
+          <div class="d-flex align-items-center mb-2">
+            <mat-icon class="me-2 text-success">attach_money</mat-icon>
+            <h6 class="mb-0 text-muted">Price</h6>
+          </div>
+          <p class="mb-0 h5 fw-bold text-success">${{ track.UnitPrice }}</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+  <!-- Actions -->
+  <div class="d-flex justify-content-end gap-2 mt-4">
+    <button mat-stroked-button (click)="closeBottomSheet()">
+      Close
+    </button>
+    <button mat-raised-button color="accent">
+      <mat-icon class="me-1">shopping_cart</mat-icon>
+      Add to Cart
+    </button>
+  </div>
+</div>

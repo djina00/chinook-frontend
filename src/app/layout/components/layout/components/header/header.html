@@ -1,10 +1,10 @@
 <mat-toolbar color="primary" class="mat-elevation-2 fixed-top">
   <div class="container-fluid d-flex align-items-center">
     <!-- Brand -->
-    <span class="brand-title">
+    <a routerLink="/" class="brand-title text-decoration-none text-success d-flex align-items-center">
       <mat-icon class="me-2">library_music</mat-icon>
       <strong>Chinook</strong>
-    </span>
+    </a>
     
     <!-- Spacer for desktop navigation -->
     <span class="flex-grow-1 d-none d-md-block"></span>
@@ -15,13 +15,9 @@
         <mat-icon class="me-1">home</mat-icon>
         Home
       </button>
-      <button mat-button>
-        <mat-icon class="me-1">shopping_bag</mat-icon>
-        Products
-      </button>
-      <button mat-button>
-        <mat-icon class="me-1">category</mat-icon>
-        Categories
+      <button mat-button routerLink="/home/albums" routerLinkActive="active-link">
+        <mat-icon class="me-1">album</mat-icon>
+        Albums
       </button>
       
       <span class="mx-3">|</span>
@@ -30,7 +26,7 @@
         <mat-icon class="me-1">admin_panel_settings</mat-icon>
         Admin
       </button>
-      <button mat-raised-button color="accent" class="ms-2">
+      <button mat-raised-button color="accent" class="ms-2" routerLink="/login">
         <mat-icon class="me-1">login</mat-icon>
         Login
       </button>
@@ -49,20 +45,16 @@
     <mat-icon matListItemIcon>home</mat-icon>
     <span matListItemTitle>Home</span>
   </a>
-  <a mat-list-item (click)="toggleMobileMenu()">
-    <mat-icon matListItemIcon>shopping_bag</mat-icon>
-    <span matListItemTitle>Products</span>
-  </a>
-  <a mat-list-item (click)="toggleMobileMenu()">
-    <mat-icon matListItemIcon>category</mat-icon>
-    <span matListItemTitle>Categories</span>
+  <a mat-list-item routerLink="/home/albums" (click)="toggleMobileMenu()">
+    <mat-icon matListItemIcon>album</mat-icon>
+    <span matListItemTitle>Albums</span>
   </a>
   <mat-divider></mat-divider>
   <a mat-list-item (click)="toggleMobileMenu()">
     <mat-icon matListItemIcon>admin_panel_settings</mat-icon>
     <span matListItemTitle>Admin</span>
   </a>
-  <a mat-list-item (click)="toggleMobileMenu()">
+  <a mat-list-item routerLink="/login" (click)="toggleMobileMenu()">
     <mat-icon matListItemIcon>login</mat-icon>
     <span matListItemTitle>Login</span>
   </a>

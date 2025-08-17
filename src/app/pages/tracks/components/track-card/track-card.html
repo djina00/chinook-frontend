@@ -11,7 +11,7 @@
     
     <div class="d-flex justify-content-between align-items-center mb-2 flex-wrap">
       <small class="text-muted">Duration</small>
-      <mat-chip color="accent">{{ formatDuration(track.Milliseconds) }}</mat-chip>
+      <mat-chip color="accent">{{ track.Milliseconds | duration }}</mat-chip>
     </div>
     
     <div class="d-flex justify-content-between align-items-center flex-wrap">
@@ -21,13 +21,10 @@
   </mat-card-content>
   
   <mat-card-actions class="d-flex justify-content-end flex-wrap">
-    <button mat-icon-button color="primary" matTooltip="Play Track">
-      <mat-icon>play_arrow</mat-icon>
-    </button>
     <button mat-icon-button color="accent" matTooltip="Add to Cart">
       <mat-icon>shopping_cart</mat-icon>
     </button>
-    <button mat-icon-button matTooltip="More Info">
+    <button mat-icon-button matTooltip="More Info" (click)="openTrackInfo()">
       <mat-icon>info</mat-icon>
     </button>
   </mat-card-actions>

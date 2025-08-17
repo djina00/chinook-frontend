@@ -1,0 +1,124 @@
+<div class="container-fluid py-4">
+  <div class="row">
+    <div class="col-12">
+      <h1 class="mb-4 d-flex align-items-center">
+        <mat-icon class="me-2">album</mat-icon>
+        Albums
+      </h1>
+
+      @if (loading()) {
+        <div class="d-flex justify-content-center align-items-center" style="min-height: 300px;">
+          <mat-spinner diameter="50"></mat-spinner>
+        </div>
+      } @else {
+        <mat-tab-group 
+          dynamicHeight 
+          (selectedTabChange)="onTabChanged($event)"
+          class="albums-tabs">
+
+          @for (album of albums(); track album.AlbumId) {
+            <mat-tab [label]="album.Title">
+              <div class="album-tracks-content p-4">
+                <div class="row align-items-center mb-3">
+                  <div class="col-md-6 col-12 mb-2 mb-md-0">
+                    <div class="d-flex align-items-center">
+                      <mat-icon class="me-2">album</mat-icon>
+                      <div>
+                        <h3 class="mb-0">{{ album.Title }}</h3>
+                        <p class="text-muted mb-0">by {{ album.artist?.Name }}</p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <!-- Search Input -->
+                  @if (selectedAlbumId() === album.AlbumId && selectedTracks().length > 0) {
+                    <div class="col-md-6 col-12">
+                      <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Search tracks</mat-label>
+                        <input matInput
+                               [value]="searchQuery()"
+                               (input)="onSearchChange($event)"
+                               placeholder="Search by name, composer, or genre...">
+                        <mat-icon matPrefix>search</mat-icon>
+                        @if (searchQuery()) {
+                          <button matSuffix 
+                                  mat-icon-button 
+                                  (click)="clearSearch()"
+                                  matTooltip="Clear search">
+                            <mat-icon>clear</mat-icon>
+                          </button>
+                        }
+                      </mat-form-field>
+                    </div>
+                  }
+                </div>
+
+                @if (tracksLoading() && selectedAlbumId() === album.AlbumId) {
+                  <div class="d-flex justify-content-center align-items-center" style="min-height: 200px;">
+                    <mat-spinner diameter="40"></mat-spinner>
+                  </div>
+                } @else if (selectedTracks().length > 0 && selectedAlbumId() === album.AlbumId) {
+                  <!-- Search Results Info -->
+                  @if (searchQuery() && filteredTracks().length !== selectedTracks().length) {
+                    <div class="d-flex justify-content-start mb-3">
+                      <mat-chip color="primary">
+                        {{ filteredTracks().length }} of {{ selectedTracks().length }} tracks found
+                      </mat-chip>
+                    </div>
+                  }
+                  
+                  @if (filteredTracks().length > 0) {
+                    <div class="tracks-list">
+                      @for (track of filteredTracks(); track track.TrackId; let i = $index) {
+                      <mat-card class="track-card mb-3">
+                        <mat-card-content class="p-3">
+                          <div class="row align-items-center">
+                            <div class="col-1">
+                              <span class="track-number text-muted">{{ i + 1 }}</span>
+                            </div>
+                            <div class="col-md-6 col-8">
+                              <h6 class="mb-1">{{ track.Name }}</h6>
+                              @if (track.Composer) {
+                                <small class="text-muted">{{ track.Composer }}</small>
+                              }
+                            </div>
+                            <div class="col-md-2 col-3 text-center">
+                              <small class="text-muted">{{ track.Milliseconds | duration }}</small>
+                            </div>
+                            <div class="col-md-2 d-none d-md-block text-center">
+                              @if (track.genre) {
+                                <mat-chip class="genre-chip">{{ track.genre.Name }}</mat-chip>
+                              }
+                            </div>
+                            <div class="col-md-1 d-none d-md-block text-end">
+                              <strong>${{ track.UnitPrice }}</strong>
+                            </div>
+                          </div>
+                        </mat-card-content>
+                      </mat-card>
+                      }
+                    </div>
+                  } @else {
+                    <!-- No search results -->
+                    <div class="text-center py-5">
+                      <mat-icon style="font-size: 48px; color: #ccc;">search_off</mat-icon>
+                      <p class="text-muted mt-2">No tracks found matching "{{ searchQuery() }}"</p>
+                      <button mat-raised-button color="primary" (click)="clearSearch()">
+                        Clear Search
+                      </button>
+                    </div>
+                  }
+                } @else if (selectedAlbumId() === album.AlbumId) {
+                  <div class="text-center py-5">
+                    <mat-icon style="font-size: 48px; color: #ccc;">music_note</mat-icon>
+                    <p class="text-muted mt-2">No tracks found for this album</p>
+                  </div>
+                }
+              </div>
+            </mat-tab>
+          }
+        </mat-tab-group>
+      }
+    </div>
+  </div>
+</div>

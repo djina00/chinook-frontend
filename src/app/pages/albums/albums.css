@@ -1,0 +1,49 @@
+.albums-tabs {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.album-card {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid #e0e0e0;
+}
+
+.album-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.track-card {
+  transition: all 0.2s ease;
+  border: 1px solid #f0f0f0;
+}
+
+.track-card:hover {
+  background-color: #f8f9fa;
+  border-color: #dee2e6;
+}
+
+.track-number {
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.genre-chip {
+  font-size: 0.75rem;
+  height: 24px;
+  line-height: 24px;
+}
+
+.overview-content {
+  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+  border-radius: 8px;
+  margin: 1rem;
+}
+
+.album-tracks-content {
+  background: #ffffff;
+  border-radius: 8px;
+  margin: 1rem;
+}
