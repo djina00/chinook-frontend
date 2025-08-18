@@ -44,9 +44,11 @@ export class LoginPage implements OnInit {
 
       this.authService.login(credentials).subscribe({
         next: (response) => {
+          console.log('Login response:', response);
           this.loading = false;
-          if (response.success) {
-            localStorage.setItem('currentUser', JSON.stringify(response.data));
+          if (response.success && response.data) {
+            console.log('About to set current user:', response.data);
+            this.authService.setCurrentUser(response.data);
             this.router.navigate(['/']);
           } else {
             this.errorMessage = response.message;

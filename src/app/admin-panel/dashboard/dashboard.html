@@ -1,0 +1,49 @@
+<div class="container-fluid">
+  <mat-card class="mb-4 text-white" style="background: linear-gradient(135deg, #9d4edd, #20c997);">
+    <mat-card-header>
+      <mat-card-title class="text-white">Welcome {{ userDisplayName }} to Chinook</mat-card-title>
+      <mat-card-subtitle class="text-white-50">Music Management Dashboard</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p class="mb-0">Manage your music library, tracks, albums, and artists from this dashboard.</p>
+    </mat-card-content>
+  </mat-card>
+
+  <div class="row g-4">
+    <div class="col-md-3">
+      <app-dashboard-card
+        icon="music_note"
+        [value]="0"
+        label="Total Tracks"
+        colorClass="text-primary">
+      </app-dashboard-card>
+    </div>
+    
+    <div class="col-md-3">
+      <app-dashboard-card
+        icon="album"
+        [value]="0"
+        label="Total Albums"
+        colorClass="text-success">
+      </app-dashboard-card>
+    </div>
+    
+    <div class="col-md-3">
+      <app-dashboard-card
+        icon="person"
+        [value]="0"
+        label="Total Artists"
+        colorClass="text-warning">
+      </app-dashboard-card>
+    </div>
+    
+    <div class="col-md-3">
+      <app-dashboard-card
+        icon="library_music"
+        [value]="0"
+        label="Total Genres"
+        colorClass="text-info">
+      </app-dashboard-card>
+    </div>
+  </div>
+</div>
