@@ -38,4 +38,8 @@ export class BlTracksApiService {
   updateTrack(trackId: number, trackData: Partial<ITrack>): Observable<any> {
     return this.http.put<any>(`${this.baseUrl}/tracks/${trackId}`, trackData);
   }
+
+  deleteTrack(trackId: number): Observable<any> {
+    return this.http.delete<any>(`${this.baseUrl}/tracks/${trackId}`);
+  }
 }

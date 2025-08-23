@@ -38,9 +38,12 @@ import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { Spinner } from './components/spinner/spinner';
 import { FeatureCard } from './components/feature-card/feature-card';
 import { DurationPipe } from './pipes/duration-pipe';
-import { TrackInfoBottomSheet } from './components/track-info-bottom-sheet/track-info-bottom-sheet';
 import { FileSizePipe } from './pipes/file-size-pipe';
 import { PricePipe } from './pipes/price.pipe';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog';
 
 @NgModule({
   declarations: [
@@ -49,9 +52,9 @@ import { PricePipe } from './pipes/price.pipe';
     Spinner,
     FeatureCard,
     DurationPipe,
-    TrackInfoBottomSheet,
     FileSizePipe,
-    PricePipe
+    PricePipe,
+    ConfirmDialogComponent
   ],
   imports: [
     CommonModule,
@@ -132,7 +135,7 @@ import { PricePipe } from './pipes/price.pipe';
     // Shared Components
     Spinner,
     FeatureCard,
-    TrackInfoBottomSheet,
+    ConfirmDialogComponent,
     // Shared Pipes
     DurationPipe,
     FileSizePipe,
@@ -140,6 +143,9 @@ import { PricePipe } from './pipes/price.pipe';
   ],
   providers: [
     // Shared services will be provided here
+    MatBottomSheet,
+    MatSnackBar,
+    MatDialog
   ]
 })
 export class SharedModule { }

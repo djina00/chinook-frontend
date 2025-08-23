@@ -4,9 +4,11 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
 import { BlTracksApiService } from './business-logic/api/bl-tracks-api.service';
 import { ITrack } from './interfaces/i-track';
 import { EditTrackModal } from './components/edit-track-modal/edit-track-modal';
+import { ConfirmDialogComponent } from '../../shared/components/confirm-dialog/confirm-dialog';
 
 @Component({
   selector: 'app-tracks',
@@ -37,7 +39,8 @@ export class Tracks implements OnInit, AfterViewInit {
   constructor(
     private tracksService: BlTracksApiService,
     private bottomSheet: MatBottomSheet,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -89,7 +92,7 @@ export class Tracks implements OnInit, AfterViewInit {
       panelClass: 'edit-track-bottom-sheet'
     });
 
-    bottomSheetRef.afterDismissed().subscribe(result => {
+    bottomSheetRef.afterDismissed().subscribe((result: ITrack | undefined) => {
       if (result) {
         console.log('Track updated:', result);
         // Call API to update the track
@@ -105,6 +108,40 @@ export class Tracks implements OnInit, AfterViewInit {
           error: (error) => {
             console.error('Error updating track:', error);
             this.snackBar.open('Failed to update track. Please try again.', 'Close', {
+              duration: 5000,
+              panelClass: ['error-snackbar']
+            });
+          }
+        });
+      }
+    });
+  }
+
+  deleteTrack(track: ITrack): void {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '400px',
+      data: {
+        title: 'Delete Track',
+        message: `Are you sure you want to delete "${track.Name}"?`,
+        confirmText: 'Delete',
+        cancelText: 'Cancel'
+      }
+    });
+
+    dialogRef.afterClosed().subscribe((confirmed: boolean) => {
+      if (confirmed) {
+        this.tracksService.deleteTrack(track.TrackId).subscribe({
+          next: (response) => {
+            console.log('Track successfully deleted:', response);
+            this.snackBar.open('Track deleted successfully!', 'Close', {
+              duration: 3000,
+              panelClass: ['success-snackbar']
+            });
+            this.loadTracks(); // Reload the tracks
+          },
+          error: (error) => {
+            console.error('Error deleting track:', error);
+            this.snackBar.open('Failed to delete track. Please try again.', 'Close', {
               duration: 5000,
               panelClass: ['error-snackbar']
             });
