@@ -16,7 +16,7 @@
   <!-- Actions Bar -->
   <mat-card class="mb-3">
     <mat-card-content class="d-flex align-items-center justify-content-end">
-      <button mat-raised-button color="primary">
+      <button mat-raised-button color="primary" (click)="addTrack()">
         <mat-icon class="me-1">add</mat-icon>
         Add Track
       </button>
@@ -107,7 +107,6 @@
 
     <!-- Paginator -->
     <mat-paginator 
-      [pageSizeOptions]="[10, 25, 50]" 
       [pageSize]="pageSize"
       [pageIndex]="currentPage"
       [length]="totalTracks"

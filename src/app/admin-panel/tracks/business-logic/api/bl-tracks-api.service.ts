@@ -42,4 +42,8 @@ export class BlTracksApiService {
   deleteTrack(trackId: number): Observable<any> {
     return this.http.delete<any>(`${this.baseUrl}/tracks/${trackId}`);
   }
+
+  createTrack(trackData: any): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/tracks`, trackData);
+  }
 }

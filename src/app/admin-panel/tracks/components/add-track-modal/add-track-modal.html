@@ -1,0 +1,141 @@
+<div class="p-4">
+  <!-- Header -->
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h4 class="mb-0 d-flex align-items-center">
+      <mat-icon class="me-2">add</mat-icon>
+      Add New Track
+    </h4>
+    <button mat-icon-button (click)="onCancel()" matTooltip="Close">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <!-- Add Form -->
+  <form [formGroup]="addForm" (ngSubmit)="onSave()">
+    <div class="row g-3">
+      <!-- Track Name -->
+      <div class="col-12">
+        <mat-card class="h-100">
+          <mat-card-content class="p-3">
+            <div class="d-flex align-items-center mb-2">
+              <mat-icon class="me-2 text-primary">library_music</mat-icon>
+              <h6 class="mb-0 text-muted">Track Name</h6>
+            </div>
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Track Name</mat-label>
+              <input matInput formControlName="Name" required>
+              <mat-error *ngIf="addForm.get('Name')?.hasError('required')">
+                Track name is required
+              </mat-error>
+            </mat-form-field>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      <!-- Album -->
+      <div class="col-md-6">
+        <mat-card class="h-100">
+          <mat-card-content class="p-3">
+            <div class="d-flex align-items-center mb-2">
+              <mat-icon class="me-2 text-info">album</mat-icon>
+              <h6 class="mb-0 text-muted">Album</h6>
+            </div>
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Select Album</mat-label>
+              <mat-select formControlName="AlbumId" required>
+                <mat-option *ngFor="let album of albums" [value]="album.AlbumId">
+                  {{ album.Title }}
+                  <span *ngIf="album.artist" class="text-muted"> - {{ album.artist.Name }}</span>
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="addForm.get('AlbumId')?.hasError('required')">
+                Album is required
+              </mat-error>
+            </mat-form-field>
+            <div *ngIf="loadingAlbums" class="d-flex align-items-center">
+              <mat-spinner diameter="20" class="me-2"></mat-spinner>
+              <small class="text-muted">Loading albums...</small>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      <!-- Genre -->
+      <div class="col-md-6">
+        <mat-card class="h-100">
+          <mat-card-content class="p-3">
+            <div class="d-flex align-items-center mb-2">
+              <mat-icon class="me-2 text-warning">category</mat-icon>
+              <h6 class="mb-0 text-muted">Genre</h6>
+            </div>
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Select Genre (Optional)</mat-label>
+              <mat-select formControlName="GenreId">
+                <mat-option value="">No Genre</mat-option>
+                <mat-option *ngFor="let genre of genres" [value]="genre.GenreId">
+                  {{ genre.Name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <div *ngIf="loadingGenres" class="d-flex align-items-center">
+              <mat-spinner diameter="20" class="me-2"></mat-spinner>
+              <small class="text-muted">Loading genres...</small>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      <!-- Composer -->
+      <div class="col-md-6">
+        <mat-card class="h-100">
+          <mat-card-content class="p-3">
+            <div class="d-flex align-items-center mb-2">
+              <mat-icon class="me-2 text-success">person</mat-icon>
+              <h6 class="mb-0 text-muted">Composer</h6>
+            </div>
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Composer</mat-label>
+              <input matInput formControlName="Composer" required>
+              <mat-error *ngIf="addForm.get('Composer')?.hasError('required')">
+                Composer is required
+              </mat-error>
+            </mat-form-field>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      <!-- Price -->
+      <div class="col-md-6">
+        <mat-card class="h-100">
+          <mat-card-content class="p-3">
+            <div class="d-flex align-items-center mb-2">
+              <mat-icon class="me-2 text-success">attach_money</mat-icon>
+              <h6 class="mb-0 text-muted">Unit Price</h6>
+            </div>
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Unit Price</mat-label>
+              <input matInput type="number" step="0.01" formControlName="UnitPrice" required>
+              <mat-error *ngIf="addForm.get('UnitPrice')?.hasError('required')">
+                Price is required
+              </mat-error>
+              <mat-error *ngIf="addForm.get('UnitPrice')?.hasError('min')">
+                Price must be 0 or greater
+              </mat-error>
+            </mat-form-field>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="d-flex justify-content-end gap-2 mt-4">
+      <button type="button" mat-stroked-button (click)="onCancel()">
+        Cancel
+      </button>
+      <button type="submit" mat-raised-button color="primary" [disabled]="addForm.invalid">
+        <mat-icon class="me-1">add</mat-icon>
+        Add Track
+      </button>
+    </div>
+  </form>
+</div>

@@ -9,6 +9,7 @@ import { BlTracksApiService } from './business-logic/api/bl-tracks-api.service';
 import { ITrack } from './interfaces/i-track';
 import { EditTrackModal } from './components/edit-track-modal/edit-track-modal';
 import { ConfirmDialogComponent } from '../../shared/components/confirm-dialog/confirm-dialog';
+import { AddTrackModal } from './components/add-track-modal/add-track-modal';
 
 @Component({
   selector: 'app-tracks',
@@ -48,7 +49,6 @@ export class Tracks implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    // Don't connect paginator to datasource for server-side pagination
     this.dataSource.sort = this.sort;
   }
 
@@ -142,6 +142,35 @@ export class Tracks implements OnInit, AfterViewInit {
           error: (error) => {
             console.error('Error deleting track:', error);
             this.snackBar.open('Failed to delete track. Please try again.', 'Close', {
+              duration: 5000,
+              panelClass: ['error-snackbar']
+            });
+          }
+        });
+      }
+    });
+  }
+
+  addTrack(): void {
+    const bottomSheetRef = this.bottomSheet.open(AddTrackModal, {
+      panelClass: 'add-track-bottom-sheet'
+    });
+
+    bottomSheetRef.afterDismissed().subscribe((result: any) => {
+      if (result) {
+        console.log('Creating new track:', result);
+        this.tracksService.createTrack(result).subscribe({
+          next: (response) => {
+            console.log('Track successfully created:', response);
+            this.snackBar.open('Track created successfully!', 'Close', {
+              duration: 3000,
+              panelClass: ['success-snackbar']
+            });
+            this.loadTracks(); // Reload the tracks
+          },
+          error: (error) => {
+            console.error('Error creating track:', error);
+            this.snackBar.open('Failed to create track. Please try again.', 'Close', {
               duration: 5000,
               panelClass: ['error-snackbar']
             });
