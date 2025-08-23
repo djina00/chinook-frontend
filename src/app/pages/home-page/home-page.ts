@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { BlTracksApiService } from '../tracks/business-logic/api/bl-tracks-api.service';
-import { ITrack } from '../tracks/interfaces/i-track';
-import { BlGenresApiService } from '../genres/business-logic/api/bl-genres-api.service';
-import { IGenre } from '../genres/interfaces/i-genre';
+import { BlTracksApiService } from '../../admin-panel/tracks/business-logic/api/bl-tracks-api.service';
+import { ITrack } from '../../admin-panel/tracks/interfaces/i-track';
+import { BlGenresApiService } from '../../admin-panel/genres/business-logic/api/bl-genres-api.service';
+import { IGenre } from '../../admin-panel/genres/interfaces/i-genre';
 
 @Component({
   selector: 'app-home-page',

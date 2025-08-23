@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
-import { ITrack } from '../../../pages/tracks/interfaces/i-track';
+import { ITrack } from '../../../admin-panel/tracks/interfaces/i-track';
 
 @Component({
   selector: 'app-track-info-bottom-sheet',

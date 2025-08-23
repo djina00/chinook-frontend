@@ -1,7 +1,7 @@
 import { Component, OnInit, signal, computed } from '@angular/core';
-import { BlAlbumsApiService } from './business-logic/api/bl-albums-api.service';
-import { IAlbum } from './interfaces/i-album';
-import { ITrack } from '../tracks/interfaces/i-track';
+import { BlAlbumsApiService } from '../../admin-panel/albums/business-logic/api/bl-albums-api.service';
+import { IAlbum } from '../../admin-panel/albums/interfaces/i-album';
+import { ITrack } from '../../admin-panel/tracks/interfaces/i-track';
 
 @Component({
   selector: 'app-albums',

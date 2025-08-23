@@ -5,7 +5,7 @@ import { AdminPanelRoutingModule } from './admin-panel-routing-module';
 import { Dashboard } from './dashboard/dashboard';
 import { Layout } from './layout/layout';
 import { SharedModule } from '../shared/shared.module';
-import { DashboardCard } from './components/dashboard-card/dashboard-card';
+import { DashboardCard } from './dashboard/components/dashboard-card/dashboard-card';
 
 @NgModule({
   declarations: [

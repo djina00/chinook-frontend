@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
-import { ITrack } from '../../interfaces/i-track';
+import { ITrack } from '../../../../admin-panel/tracks/interfaces/i-track';
 import { TrackInfoBottomSheet } from '../../../../shared/components/track-info-bottom-sheet/track-info-bottom-sheet';
 
 @Component({
