@@ -34,4 +34,8 @@ export class BlTracksApiService {
       })
     );
   }
+
+  updateTrack(trackId: number, trackData: Partial<ITrack>): Observable<any> {
+    return this.http.put<any>(`${this.baseUrl}/tracks/${trackId}`, trackData);
+  }
 }

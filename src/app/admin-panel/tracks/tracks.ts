@@ -2,8 +2,11 @@ import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { BlTracksApiService } from './business-logic/api/bl-tracks-api.service';
 import { ITrack } from './interfaces/i-track';
+import { EditTrackModal } from './components/edit-track-modal/edit-track-modal';
 
 @Component({
   selector: 'app-tracks',
@@ -31,7 +34,11 @@ export class Tracks implements OnInit, AfterViewInit {
   pageSize = 10;
   currentPage = 0;
 
-  constructor(private tracksService: BlTracksApiService) {}
+  constructor(
+    private tracksService: BlTracksApiService,
+    private bottomSheet: MatBottomSheet,
+    private snackBar: MatSnackBar
+  ) {}
 
   ngOnInit(): void {
     this.loadTracks();
@@ -76,6 +83,35 @@ export class Tracks implements OnInit, AfterViewInit {
     this.loadTracks();
   }
 
+  editTrack(track: ITrack): void {
+    const bottomSheetRef = this.bottomSheet.open(EditTrackModal, {
+      data: track,
+      panelClass: 'edit-track-bottom-sheet'
+    });
 
+    bottomSheetRef.afterDismissed().subscribe(result => {
+      if (result) {
+        console.log('Track updated:', result);
+        // Call API to update the track
+        this.tracksService.updateTrack(result.TrackId, result).subscribe({
+          next: (response) => {
+            console.log('Track successfully updated:', response);
+            this.snackBar.open('Track updated successfully!', 'Close', {
+              duration: 3000,
+              panelClass: ['success-snackbar']
+            });
+            this.loadTracks(); // Reload the tracks to show updated data
+          },
+          error: (error) => {
+            console.error('Error updating track:', error);
+            this.snackBar.open('Failed to update track. Please try again.', 'Close', {
+              duration: 5000,
+              panelClass: ['error-snackbar']
+            });
+          }
+        });
+      }
+    });
+  }
 
 }

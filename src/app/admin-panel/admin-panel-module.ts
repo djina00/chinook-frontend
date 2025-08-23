@@ -7,13 +7,15 @@ import { Layout } from './layout/layout';
 import { Tracks } from './tracks/tracks';
 import { SharedModule } from '../shared/shared.module';
 import { DashboardCard } from './dashboard/components/dashboard-card/dashboard-card';
+import { EditTrackModal } from './tracks/components/edit-track-modal/edit-track-modal';
 
 @NgModule({
   declarations: [
     Dashboard,
     Layout,
     Tracks,
-    DashboardCard
+    DashboardCard,
+    EditTrackModal
   ],
   imports: [
     CommonModule,
