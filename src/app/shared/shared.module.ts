@@ -40,6 +40,7 @@ import { FeatureCard } from './components/feature-card/feature-card';
 import { DurationPipe } from './pipes/duration-pipe';
 import { TrackInfoBottomSheet } from './components/track-info-bottom-sheet/track-info-bottom-sheet';
 import { FileSizePipe } from './pipes/file-size-pipe';
+import { PricePipe } from './pipes/price.pipe';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { FileSizePipe } from './pipes/file-size-pipe';
     FeatureCard,
     DurationPipe,
     TrackInfoBottomSheet,
-    FileSizePipe
+    FileSizePipe,
+    PricePipe
   ],
   imports: [
     CommonModule,
@@ -133,7 +135,8 @@ import { FileSizePipe } from './pipes/file-size-pipe';
     TrackInfoBottomSheet,
     // Shared Pipes
     DurationPipe,
-    FileSizePipe
+    FileSizePipe,
+    PricePipe
   ],
   providers: [
     // Shared services will be provided here

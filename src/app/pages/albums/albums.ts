@@ -34,10 +34,7 @@ export class Albums implements OnInit {
     );
   });
 
-  constructor(
-    private albumsService: BlAlbumsApiService,
-    private tracksService: BlTracksApiService
-  ) {}
+  constructor(private albumsService: BlAlbumsApiService) {}
 
   ngOnInit(): void {
     this.loadAlbums();
@@ -64,15 +61,28 @@ export class Albums implements OnInit {
   }
 
   onAlbumSelected(albumId: number): void {
+    console.log('ALBUMS: Loading tracks for album ID:', albumId);
     this.selectedAlbumId.set(albumId);
     this.tracksLoading.set(true);
-    this.tracksService.getTracksByAlbum(albumId).subscribe({
-      next: (tracks) => {
-        this.selectedTracks.set(tracks);
+    this.albumsService.getAlbumWithTracks(albumId).subscribe({
+      next: (response: any) => {
+        console.log('ALBUMS: API Response for album tracks:', response);
+        if (response && response.success && response.data) {
+          // New API returns tracks directly in response.data
+          if (Array.isArray(response.data)) {
+            console.log('ALBUMS: Found tracks array:', response.data);
+            this.selectedTracks.set(response.data);
+          } else {
+            console.log('ALBUMS: No tracks found, setting empty array');
+            this.selectedTracks.set([]);
+          }
+        } else {
+          this.selectedTracks.set([]);
+        }
         this.tracksLoading.set(false);
       },
       error: (error) => {
-        console.error('Error loading tracks:', error);
+        console.error('Error loading album tracks:', error);
         this.tracksLoading.set(false);
       }
     });

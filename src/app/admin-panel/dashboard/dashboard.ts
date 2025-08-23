@@ -110,14 +110,16 @@ export class Dashboard implements OnInit {
       }
     });
 
-    // Load tracks count
-    this.tracksService.getTracks().subscribe({
+    // Load tracks count - use same logic as tracks page
+    this.tracksService.getTracks(1, 10).subscribe({
       next: (response: any) => {
-        // Handle the paginated response structure
-        if (response && response.success && response.data && Array.isArray(response.data.data)) {
-          this.tracksCount = response.data.data.length;
-        } else if (Array.isArray(response)) {
-          this.tracksCount = response.length;
+        console.log('DASHBOARD Tracks API Response:', response);
+        if (response && response.success && response.data) {
+          // Handle paginated response structure - same as tracks page
+          if (Array.isArray(response.data.data)) {
+            this.tracksCount = response.data.total;
+            console.log('DASHBOARD Total tracks set to:', this.tracksCount);
+          }
         }
         this.apiCallsCompleted.tracks = true;
         this.checkAllApiCallsCompleted();

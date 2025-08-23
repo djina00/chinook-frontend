@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { AdminPanelRoutingModule } from './admin-panel-routing-module';
 import { Dashboard } from './dashboard/dashboard';
 import { Layout } from './layout/layout';
+import { Tracks } from './tracks/tracks';
 import { SharedModule } from '../shared/shared.module';
 import { DashboardCard } from './dashboard/components/dashboard-card/dashboard-card';
 
@@ -11,6 +12,7 @@ import { DashboardCard } from './dashboard/components/dashboard-card/dashboard-c
   declarations: [
     Dashboard,
     Layout,
+    Tracks,
     DashboardCard
   ],
   imports: [

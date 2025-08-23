@@ -1,59 +1,56 @@
-<div class="d-flex vh-100">
-  <!-- Sidebar -->
-  <div class="text-white d-flex flex-column" style="width: 250px; min-height: 100vh; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
-    <div class="p-3 border-bottom">
-      <h5 class="mb-0 d-flex align-items-center">
-        <mat-icon class="me-2">library_music</mat-icon>
-        Chinook Admin
-      </h5>
+<!-- Fixed Sidebar -->
+<div class="text-white d-flex flex-column position-fixed" style="width: 250px; height: 100vh; top: 0; left: 0; z-index: 1000; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+  <div class="p-3 border-bottom">
+    <h5 class="mb-0 d-flex align-items-center">
+      <mat-icon class="me-2">library_music</mat-icon>
+      Chinook Admin
+    </h5>
+  </div>
+  
+  <nav class="flex-grow-1">
+    <div class="list-group list-group-flush">
+      <a routerLink="/admin/dashboard" routerLinkActive="active" 
+         class="list-group-item list-group-item-action bg-transparent text-white border-0 d-flex align-items-center">
+        <mat-icon class="me-2">dashboard</mat-icon>
+        Dashboard
+      </a>
+      <a routerLink="/admin/tracks" routerLinkActive="active"
+         class="list-group-item list-group-item-action bg-transparent text-white border-0 d-flex align-items-center">
+        <mat-icon class="me-2">music_note</mat-icon>
+        Tracks
+      </a>
+      <a routerLink="/admin/albums" routerLinkActive="active"
+         class="list-group-item list-group-item-action bg-transparent text-white border-0 d-flex align-items-center">
+        <mat-icon class="me-2">album</mat-icon>
+        Albums
+      </a>
+      <a routerLink="/admin/artists" routerLinkActive="active"
+         class="list-group-item list-group-item-action bg-transparent text-white border-0 d-flex align-items-center">
+        <mat-icon class="me-2">person</mat-icon>
+        Artists
+      </a>
+      
+      <hr class="border-white-50">
+      
+      <a routerLink="/" 
+         class="list-group-item list-group-item-action bg-transparent text-white border-0 d-flex align-items-center">
+        <mat-icon class="me-2">arrow_back</mat-icon>
+        Back to Site
+      </a>
     </div>
-    
-    <nav class="flex-grow-1">
-      <div class="list-group list-group-flush">
-        <a routerLink="/admin/dashboard" routerLinkActive="active" 
-           class="list-group-item list-group-item-action bg-transparent text-white border-0 d-flex align-items-center">
-          <mat-icon class="me-2">dashboard</mat-icon>
-          Dashboard
-        </a>
-        <a routerLink="/admin/tracks" routerLinkActive="active"
-           class="list-group-item list-group-item-action bg-transparent text-white border-0 d-flex align-items-center">
-          <mat-icon class="me-2">music_note</mat-icon>
-          Tracks
-        </a>
-        <a routerLink="/admin/albums" routerLinkActive="active"
-           class="list-group-item list-group-item-action bg-transparent text-white border-0 d-flex align-items-center">
-          <mat-icon class="me-2">album</mat-icon>
-          Albums
-        </a>
-        <a routerLink="/admin/artists" routerLinkActive="active"
-           class="list-group-item list-group-item-action bg-transparent text-white border-0 d-flex align-items-center">
-          <mat-icon class="me-2">person</mat-icon>
-          Artists
-        </a>
-        
-        <hr class="border-white-50">
-        
-        <a routerLink="/" 
-           class="list-group-item list-group-item-action bg-transparent text-white border-0 d-flex align-items-center">
-          <mat-icon class="me-2">arrow_back</mat-icon>
-          Back to Site
-        </a>
-      </div>
-    </nav>
-  </div>
-
-  <!-- Main Content -->
-  <div class="flex-grow-1 d-flex flex-column">
-    <nav class="navbar navbar-light bg-white shadow-sm px-3">
-      <span class="navbar-brand mb-0 h1">Music Management System</span>
-      <button mat-raised-button color="warn" (click)="logout()">
-        <mat-icon class="me-1">logout</mat-icon>
-        Logout
-      </button>
-    </nav>
-    
-    <main class="flex-grow-1 p-4 bg-light">
-      <router-outlet></router-outlet>
-    </main>
-  </div>
+  </nav>
 </div>
+
+<!-- Fixed Header -->
+<nav class="navbar navbar-light bg-white shadow-sm px-3 position-fixed" style="left: 250px; right: 0; top: 0; z-index: 999;">
+  <span class="navbar-brand mb-0 h1">Music Management System</span>
+  <button mat-raised-button color="warn" (click)="logout()">
+    <mat-icon class="me-1">logout</mat-icon>
+    Logout
+  </button>
+</nav>
+
+<!-- Main Content with Left Margin and Top Padding -->
+<main class="bg-light" style="margin-left: 250px; margin-top: 70px; padding: 1rem; min-height: calc(100vh - 70px);">
+  <router-outlet></router-outlet>
+</main>

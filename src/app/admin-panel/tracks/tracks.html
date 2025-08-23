@@ -1,0 +1,119 @@
+<!-- Page Header -->
+<mat-toolbar color="primary">
+  <mat-icon class="me-2">music_note</mat-icon>
+  <span>Tracks Management</span>
+  <span class="spacer"></span>
+  <mat-chip>{{ totalTracks }} tracks</mat-chip>
+</mat-toolbar>
+
+<!-- Loading Spinner -->
+<div *ngIf="loading" class="d-flex justify-content-center align-items-center" style="min-height: 400px;">
+  <app-spinner></app-spinner>
+</div>
+
+<!-- Tracks Table -->
+<div *ngIf="!loading" class="p-3">
+  <!-- Actions Bar -->
+  <mat-card class="mb-3">
+    <mat-card-content class="d-flex align-items-center justify-content-end">
+      <button mat-raised-button color="primary">
+        <mat-icon class="me-1">add</mat-icon>
+        Add Track
+      </button>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Table Card -->
+  <mat-card>
+    <div class="table-responsive">
+      <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z0 w-100">
+        
+        <!-- Track ID Column -->
+        <ng-container matColumnDef="TrackId">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+          <td mat-cell *matCellDef="let track">{{ track.TrackId }}</td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="Name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Track Name</th>
+          <td mat-cell *matCellDef="let track">
+            <div class="fw-bold">{{ track.Name }}</div>
+          </td>
+        </ng-container>
+
+        <!-- Album Column -->
+        <ng-container matColumnDef="album">
+          <th mat-header-cell *matHeaderCellDef>Album / Artist</th>
+          <td mat-cell *matCellDef="let track">
+            <div *ngIf="track.album">
+              <div class="fw-medium">{{ track.album.Title }}</div>
+              <small class="text-muted" *ngIf="track.album.artist">
+                {{ track.album.artist.Name }}
+              </small>
+            </div>
+            <span *ngIf="!track.album" class="text-muted">Unknown</span>
+          </td>
+        </ng-container>
+
+        <!-- Genre Column -->
+        <ng-container matColumnDef="genre">
+          <th mat-header-cell *matHeaderCellDef>Genre</th>
+          <td mat-cell *matCellDef="let track">
+            <mat-chip *ngIf="track.genre" color="accent" selected>
+              {{ track.genre.Name }}
+            </mat-chip>
+            <span *ngIf="!track.genre" class="text-muted">-</span>
+          </td>
+        </ng-container>
+
+        <!-- Composer Column -->
+        <ng-container matColumnDef="Composer">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Composer</th>
+          <td mat-cell *matCellDef="let track">
+            <span [class.text-muted]="!track.Composer">
+              {{ track.Composer || 'Unknown' }}
+            </span>
+          </td>
+        </ng-container>
+
+        <!-- Price Column -->
+        <ng-container matColumnDef="UnitPrice">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Price</th>
+          <td mat-cell *matCellDef="let track">
+            <strong class="text-success">{{ track.UnitPrice | price }}</strong>
+          </td>
+        </ng-container>
+
+        <!-- Actions Column -->
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef class="text-center">Actions</th>
+          <td mat-cell *matCellDef="let track" class="text-center">
+            <div class="d-flex gap-1 justify-content-center">
+              <button mat-mini-fab color="accent" matTooltip="Edit Track" class="me-1">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button mat-mini-fab color="warn" matTooltip="Delete Track">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="hover-row"></tr>
+      </table>
+    </div>
+
+    <!-- Paginator -->
+    <mat-paginator 
+      [pageSizeOptions]="[10, 25, 50]" 
+      [pageSize]="pageSize"
+      [pageIndex]="currentPage"
+      [length]="totalTracks"
+      (page)="onPageChange($event)"
+      showFirstLastButtons
+      class="mat-elevation-z0">
+    </mat-paginator>
+  </mat-card>
+</div>

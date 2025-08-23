@@ -14,8 +14,8 @@ export class BlTracksApiService {
     public http: HttpClient
   ) {}
 
-  getTracks(): Observable<any> {
-    return this.http.get<any>(`${this.baseUrl}/tracks`);
+  getTracks(page: number = 1, perPage: number = 10): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/tracks?page=${page}&per_page=${perPage}`);
   }
 
   getTrack(id: number): Observable<ITrack> {
@@ -23,9 +23,10 @@ export class BlTracksApiService {
   }
 
   getTracksByAlbum(albumId: number): Observable<ITrack[]> {
-    return this.getTracks().pipe(
+    // Get all tracks by requesting a large page size
+    return this.getTracks(1, 5000).pipe(
       map(response => {
-        if (response.success && response.data.data) {
+        if (response && response.success && response.data && Array.isArray(response.data.data)) {
           // Filter tracks by AlbumId on the client side
           return response.data.data.filter((track: ITrack) => track.AlbumId === albumId);
         }
