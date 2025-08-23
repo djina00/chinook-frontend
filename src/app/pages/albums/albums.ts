@@ -1,5 +1,6 @@
 import { Component, OnInit, signal, computed } from '@angular/core';
 import { BlAlbumsApiService } from '../../admin-panel/albums/business-logic/api/bl-albums-api.service';
+import { BlTracksApiService } from '../../admin-panel/tracks/business-logic/api/bl-tracks-api.service';
 import { IAlbum } from '../../admin-panel/albums/interfaces/i-album';
 import { ITrack } from '../../admin-panel/tracks/interfaces/i-track';
 
@@ -33,7 +34,10 @@ export class Albums implements OnInit {
     );
   });
 
-  constructor(private albumsService: BlAlbumsApiService) {}
+  constructor(
+    private albumsService: BlAlbumsApiService,
+    private tracksService: BlTracksApiService
+  ) {}
 
   ngOnInit(): void {
     this.loadAlbums();
@@ -62,7 +66,7 @@ export class Albums implements OnInit {
   onAlbumSelected(albumId: number): void {
     this.selectedAlbumId.set(albumId);
     this.tracksLoading.set(true);
-    this.albumsService.getTracksByAlbum(albumId).subscribe({
+    this.tracksService.getTracksByAlbum(albumId).subscribe({
       next: (tracks) => {
         this.selectedTracks.set(tracks);
         this.tracksLoading.set(false);

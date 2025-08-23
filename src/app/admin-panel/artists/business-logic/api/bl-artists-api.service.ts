@@ -5,12 +5,12 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class BlAlbumsApiService {
+export class BlArtistsApiService {
   private readonly baseUrl = 'http://localhost:8000/api/v1';
 
   constructor(private http: HttpClient) { }
 
-  getAlbums(): Observable<any> {
-    return this.http.get<any>(`${this.baseUrl}/albums`);
+  getArtists(): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/artists`);
   }
 }

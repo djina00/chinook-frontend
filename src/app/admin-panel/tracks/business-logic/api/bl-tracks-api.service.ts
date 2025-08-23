@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { ITrack } from '../../interfaces/i-track';
 
 @Injectable({
@@ -14,11 +14,23 @@ export class BlTracksApiService {
     public http: HttpClient
   ) {}
 
-  getAll(): Observable<ITrack[]> {
-    return this.http.get<ITrack[]>(`${this.baseUrl}/tracks`);
+  getTracks(): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/tracks`);
   }
 
-  getOne(id: number): Observable<ITrack> {
+  getTrack(id: number): Observable<ITrack> {
     return this.http.get<ITrack>(`${this.baseUrl}/tracks/${id}`);
+  }
+
+  getTracksByAlbum(albumId: number): Observable<ITrack[]> {
+    return this.getTracks().pipe(
+      map(response => {
+        if (response.success && response.data.data) {
+          // Filter tracks by AlbumId on the client side
+          return response.data.data.filter((track: ITrack) => track.AlbumId === albumId);
+        }
+        return [];
+      })
+    );
   }
 }

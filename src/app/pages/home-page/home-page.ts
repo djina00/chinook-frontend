@@ -32,7 +32,7 @@ export class HomePage implements OnInit {
     this.loading = true;
     this.error = null;
     
-    this.tracksApiService.getAll().subscribe({
+    this.tracksApiService.getTracks().subscribe({
       next: (response: any) => {
         console.log('API Response:', response);
         
@@ -59,7 +59,7 @@ export class HomePage implements OnInit {
     this.genresLoading = true;
     this.genresError = null;
     
-    this.genresApiService.getAll().subscribe({
+    this.genresApiService.getGenres().subscribe({
       next: (response: any) => {
         console.log('Genres API Response:', response);
         

@@ -7,9 +7,3 @@ export interface IAlbum {
     Name: string;
   };
 }
-
-export interface IAlbumResponse {
-  success: boolean;
-  data: IAlbum[];
-  message?: string;
-}

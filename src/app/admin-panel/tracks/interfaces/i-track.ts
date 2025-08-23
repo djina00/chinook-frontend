@@ -25,15 +25,3 @@ export interface ITrack {
     Name: string;
   };
 }
-
-export interface ITrackResponse {
-  success: boolean;
-  data: {
-    data: ITrack[];
-    current_page: number;
-    per_page: number;
-    total: number;
-    last_page: number;
-  };
-  message?: string;
-}

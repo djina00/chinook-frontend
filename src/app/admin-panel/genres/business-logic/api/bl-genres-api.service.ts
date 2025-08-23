@@ -14,11 +14,11 @@ export class BlGenresApiService {
     public http: HttpClient
   ) {}
 
-  getAll(): Observable<IGenre[]> {
-    return this.http.get<IGenre[]>(`${this.baseUrl}/genres`);
+  getGenres(): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/genres`);
   }
 
-  getOne(id: number): Observable<IGenre> {
+  getGenre(id: number): Observable<IGenre> {
     return this.http.get<IGenre>(`${this.baseUrl}/genres/${id}`);
   }
 }

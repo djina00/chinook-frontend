@@ -9,11 +9,17 @@
     </mat-card-content>
   </mat-card>
 
-  <div class="row g-4">
+  <!-- Loading Spinner -->
+  <div *ngIf="loading" class="d-flex justify-content-center my-5">
+    <app-spinner></app-spinner>
+  </div>
+
+  <!-- Dashboard Cards -->
+  <div *ngIf="!loading" class="row g-4">
     <div class="col-md-3">
       <app-dashboard-card
         icon="music_note"
-        [value]="0"
+        [value]="tracksCount"
         label="Total Tracks"
         colorClass="text-primary">
       </app-dashboard-card>
@@ -22,7 +28,7 @@
     <div class="col-md-3">
       <app-dashboard-card
         icon="album"
-        [value]="0"
+        [value]="albumsCount"
         label="Total Albums"
         colorClass="text-success">
       </app-dashboard-card>
@@ -31,7 +37,7 @@
     <div class="col-md-3">
       <app-dashboard-card
         icon="person"
-        [value]="0"
+        [value]="artistsCount"
         label="Total Artists"
         colorClass="text-warning">
       </app-dashboard-card>
@@ -40,7 +46,7 @@
     <div class="col-md-3">
       <app-dashboard-card
         icon="library_music"
-        [value]="0"
+        [value]="genresCount"
         label="Total Genres"
         colorClass="text-info">
       </app-dashboard-card>
