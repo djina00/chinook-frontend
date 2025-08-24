@@ -76,13 +76,13 @@
                             <div class="col-1">
                               <span class="track-number text-muted">{{ i + 1 }}</span>
                             </div>
-                            <div class="col-md-6 col-8">
+                            <div class="col-md-5 col-7">
                               <h6 class="mb-1">{{ track.Name }}</h6>
                               @if (track.Composer) {
                                 <small class="text-muted">{{ track.Composer }}</small>
                               }
                             </div>
-                            <div class="col-md-2 col-3 text-center">
+                            <div class="col-md-2 d-none d-md-block text-center">
                               <small class="text-muted">{{ track.Milliseconds | duration }}</small>
                             </div>
                             <div class="col-md-2 d-none d-md-block text-center">
@@ -90,8 +90,18 @@
                                 <mat-chip class="genre-chip">{{ track.genre.Name }}</mat-chip>
                               }
                             </div>
-                            <div class="col-md-1 d-none d-md-block text-end">
-                              <strong>${{ track.UnitPrice }}</strong>
+                            <div class="col-md-1 d-none d-md-block text-center">
+                              <strong class="text-success">{{ track.UnitPrice | price }}</strong>
+                            </div>
+                            <div class="col-1 text-end">
+                              <button mat-icon-button 
+                                      [color]="isInCart(track.TrackId) ? 'primary' : 'accent'" 
+                                      [matTooltip]="isInCart(track.TrackId) ? 'Remove from cart' : 'Add to cart'"
+                                      (click)="toggleCart(track)">
+                                <mat-icon [class]="isInCart(track.TrackId) ? 'text-primary' : ''">
+                                  {{ isInCart(track.TrackId) ? 'shopping_cart' : 'add_shopping_cart' }}
+                                </mat-icon>
+                              </button>
                             </div>
                           </div>
                         </mat-card-content>

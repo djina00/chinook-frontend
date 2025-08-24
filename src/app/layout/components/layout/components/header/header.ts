@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { AuthService } from '../../../../../shared/services/auth';
+import { ShoppingCartService } from '../../../../../shared/services/shopping-cart.service';
 
 @Component({
   selector: 'app-header',
@@ -16,7 +17,8 @@ export class Header implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    public cartService: ShoppingCartService
   ) {}
 
   ngOnInit(): void {
@@ -36,6 +38,10 @@ export class Header implements OnInit {
   logout(): void {
     this.authService.logout();
     this.router.navigate(['/login']);
+  }
+
+  get cartCount(): number {
+    return this.cartService.getCartCount();
   }
 
   private updateUserStatus(): void {

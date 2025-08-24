@@ -3,6 +3,8 @@ import { BlAlbumsApiService } from '../../admin-panel/albums/business-logic/api/
 import { BlTracksApiService } from '../../admin-panel/tracks/business-logic/api/bl-tracks-api.service';
 import { IAlbum } from '../../admin-panel/albums/interfaces/i-album';
 import { ITrack } from '../../admin-panel/tracks/interfaces/i-track';
+import { ShoppingCartService } from '../../shared/services/shopping-cart.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-albums',
@@ -34,7 +36,11 @@ export class Albums implements OnInit {
     );
   });
 
-  constructor(private albumsService: BlAlbumsApiService) {}
+  constructor(
+    private albumsService: BlAlbumsApiService,
+    private cartService: ShoppingCartService,
+    private snackBar: MatSnackBar
+  ) {}
 
   ngOnInit(): void {
     this.loadAlbums();
@@ -105,6 +111,20 @@ export class Albums implements OnInit {
 
   clearSearch(): void {
     this.searchQuery.set('');
+  }
+
+  // Shopping cart methods
+  isInCart(trackId: number): boolean {
+    return this.cartService.isInCart(trackId);
+  }
+
+  toggleCart(track: ITrack): void {
+    this.cartService.toggleInCart(track);
+    const action = this.isInCart(track.TrackId) ? 'added to' : 'removed from';
+    this.snackBar.open(`"${track.Name}" ${action} cart!`, 'Close', {
+      duration: 2000,
+      panelClass: this.isInCart(track.TrackId) ? ['success-snackbar'] : ['info-snackbar']
+    });
   }
 
 }

@@ -21,8 +21,13 @@
   </mat-card-content>
   
   <mat-card-actions class="d-flex justify-content-end flex-wrap">
-    <button mat-icon-button color="accent" matTooltip="Add to Cart">
-      <mat-icon>shopping_cart</mat-icon>
+    <button mat-icon-button 
+            [color]="isInCart() ? 'primary' : 'accent'" 
+            [matTooltip]="isInCart() ? 'Remove from cart' : 'Add to cart'"
+            (click)="toggleCart()">
+      <mat-icon [class]="isInCart() ? 'text-primary' : ''">
+        {{ isInCart() ? 'shopping_cart' : 'add_shopping_cart' }}
+      </mat-icon>
     </button>
     <button mat-icon-button matTooltip="More Info" (click)="openTrackInfo()">
       <mat-icon>info</mat-icon>

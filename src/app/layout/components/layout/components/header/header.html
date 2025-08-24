@@ -21,6 +21,10 @@
           <mat-icon class="me-1">album</mat-icon>
           Albums
         </button>
+        <button mat-button routerLink="/home/cart">
+          <mat-icon class="me-1" [matBadge]="cartCount" [matBadgeHidden]="cartCount === 0" matBadgeColor="accent" aria-hidden="false">shopping_cart</mat-icon>
+          Cart
+        </button>
       </ng-container>
       
       <!-- Admin section - only visible to admin -->
@@ -67,6 +71,10 @@
     <a mat-list-item routerLink="/home/albums" (click)="toggleMobileMenu()">
       <mat-icon matListItemIcon>album</mat-icon>
       <span matListItemTitle>Albums</span>
+    </a>
+    <a mat-list-item routerLink="/home/cart" (click)="toggleMobileMenu()">
+      <mat-icon matListItemIcon [matBadge]="cartCount" [matBadgeHidden]="cartCount === 0" matBadgeColor="accent" aria-hidden="false">shopping_cart</mat-icon>
+      <span matListItemTitle>Cart</span>
     </a>
   </ng-container>
   

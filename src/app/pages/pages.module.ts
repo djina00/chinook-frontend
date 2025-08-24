@@ -6,11 +6,13 @@ import { HomePage } from './home-page/home-page';
 import { SharedModule } from '../shared/shared.module';
 import { TracksModule } from './tracks/tracks.module';
 import { Albums } from './albums/albums';
+import { Cart } from './cart/cart';
 
 @NgModule({
   declarations: [
     HomePage,
-    Albums
+    Albums,
+    Cart
   ],
   imports: [
     CommonModule,

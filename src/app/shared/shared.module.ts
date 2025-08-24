@@ -35,6 +35,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
+import { MatBadgeModule } from '@angular/material/badge';
 import { Spinner } from './components/spinner/spinner';
 import { FeatureCard } from './components/feature-card/feature-card';
 import { DurationPipe } from './pipes/duration-pipe';
@@ -44,6 +45,7 @@ import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog';
+import { ShoppingCartService } from './services/shopping-cart.service';
 
 @NgModule({
   declarations: [
@@ -92,7 +94,8 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
     MatTableModule,
     MatSortModule,
     MatPaginatorModule,
-    MatBottomSheetModule
+    MatBottomSheetModule,
+    MatBadgeModule
   ],
   exports: [
     // Export modules so they can be used by other modules
@@ -132,6 +135,7 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
     MatSortModule,
     MatPaginatorModule,
     MatBottomSheetModule,
+    MatBadgeModule,
     // Shared Components
     Spinner,
     FeatureCard,
@@ -145,7 +149,8 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
     // Shared services will be provided here
     MatBottomSheet,
     MatSnackBar,
-    MatDialog
+    MatDialog,
+    ShoppingCartService
   ]
 })
 export class SharedModule { }
