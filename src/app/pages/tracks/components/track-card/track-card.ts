@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { ITrack } from '../../../../admin-panel/tracks/interfaces/i-track';
-import { TrackEditCard } from '../../../../admin-panel/tracks/components/track-edit-card/track-edit-card';
+import { InfoTrackCard } from '../../../../admin-panel/tracks/components/info-track-card/info-track-card';
 
 @Component({
   selector: 'app-track-card',
@@ -15,7 +15,7 @@ export class TrackCard {
   constructor(private bottomSheet: MatBottomSheet) {}
 
   openTrackInfo(): void {
-    this.bottomSheet.open(TrackEditCard, {
+    this.bottomSheet.open(InfoTrackCard, {
       data: this.track,
       panelClass: 'track-info-bottom-sheet'
     });

@@ -8,7 +8,7 @@ import { Tracks } from './tracks/tracks';
 import { SharedModule } from '../shared/shared.module';
 import { DashboardCard } from './dashboard/components/dashboard-card/dashboard-card';
 import { EditTrackModal } from './tracks/components/edit-track-modal/edit-track-modal';
-import { TrackEditCard } from './tracks/components/track-edit-card/track-edit-card';
+import { InfoTrackCard } from './tracks/components/info-track-card/info-track-card';
 import { AddTrackModal } from './tracks/components/add-track-modal/add-track-modal';
 
 @NgModule({
@@ -18,7 +18,7 @@ import { AddTrackModal } from './tracks/components/add-track-modal/add-track-mod
     Tracks,
     DashboardCard,
     EditTrackModal,
-    TrackEditCard,
+    InfoTrackCard,
     AddTrackModal
   ],
   imports: [
