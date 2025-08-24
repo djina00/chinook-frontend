@@ -9,30 +9,12 @@
   
   <nav class="flex-grow-1">
     <div class="list-group list-group-flush">
-      <a routerLink="/admin/dashboard" routerLinkActive="active" 
+      <a *ngFor="let link of sidebarLinks" 
+         [routerLink]="link.path" 
+         routerLinkActive="active" 
          class="list-group-item list-group-item-action bg-transparent text-white border-0 d-flex align-items-center">
-        <mat-icon class="me-2">dashboard</mat-icon>
-        Dashboard
-      </a>
-      <a routerLink="/admin/tracks" routerLinkActive="active"
-         class="list-group-item list-group-item-action bg-transparent text-white border-0 d-flex align-items-center">
-        <mat-icon class="me-2">music_note</mat-icon>
-        Tracks
-      </a>
-      <a routerLink="/admin/albums" routerLinkActive="active"
-         class="list-group-item list-group-item-action bg-transparent text-white border-0 d-flex align-items-center">
-        <mat-icon class="me-2">album</mat-icon>
-        Albums
-      </a>
-      <a routerLink="/admin/artists" routerLinkActive="active"
-         class="list-group-item list-group-item-action bg-transparent text-white border-0 d-flex align-items-center">
-        <mat-icon class="me-2">person</mat-icon>
-        Artists
-      </a>
-      <a routerLink="/admin/users" routerLinkActive="active"
-         class="list-group-item list-group-item-action bg-transparent text-white border-0 d-flex align-items-center">
-        <mat-icon class="me-2">people</mat-icon>
-        Users
+        <mat-icon class="me-2">{{ link.icon }}</mat-icon>
+        {{ link.label }}
       </a>
       
       <hr class="border-white-50">

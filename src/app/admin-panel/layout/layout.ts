@@ -12,6 +12,24 @@ export class Layout implements OnInit {
   currentUser: Customer | null = null;
   userDisplayName = '';
 
+  sidebarLinks = [
+    {
+      path: '/admin/dashboard',
+      icon: 'dashboard',
+      label: 'Dashboard'
+    },
+    {
+      path: '/admin/tracks',
+      icon: 'music_note',
+      label: 'Tracks'
+    },
+    {
+      path: '/admin/users',
+      icon: 'people',
+      label: 'Users'
+    }
+  ];
+
   constructor(
     private authService: AuthService,
     private router: Router

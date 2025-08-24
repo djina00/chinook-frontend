@@ -14,14 +14,12 @@
 <!-- Tracks Table -->
 <div *ngIf="!loading" class="p-3">
   <!-- Actions Bar -->
-  <mat-card class="mb-3">
-    <mat-card-content class="d-flex align-items-center justify-content-end">
+  <div class="mb-3">
       <button mat-raised-button color="primary" (click)="addTrack()">
         <mat-icon class="me-1">add</mat-icon>
         Add Track
       </button>
-    </mat-card-content>
-  </mat-card>
+  </div>
 
   <!-- Table Card -->
   <mat-card>
