@@ -15,7 +15,7 @@ export class BlTracksApiService {
   ) {}
 
   getTracks(page: number = 1, perPage: number = 10): Observable<any> {
-    return this.http.get<any>(`${this.baseUrl}/tracks?page=${page}&per_page=${perPage}`);
+    return this.http.get<any>(`${this.baseUrl}/tracks?page=${page}&perpage=${perPage}`);
   }
 
   getTrack(id: number): Observable<ITrack> {

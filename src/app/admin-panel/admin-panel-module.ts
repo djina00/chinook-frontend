@@ -10,6 +10,8 @@ import { DashboardCard } from './dashboard/components/dashboard-card/dashboard-c
 import { EditTrackModal } from './tracks/components/edit-track-modal/edit-track-modal';
 import { InfoTrackCard } from './tracks/components/info-track-card/info-track-card';
 import { AddTrackModal } from './tracks/components/add-track-modal/add-track-modal';
+import { Users } from './users/users';
+import { EditUserModal } from './users/components/edit-user-modal/edit-user-modal';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { AddTrackModal } from './tracks/components/add-track-modal/add-track-mod
     DashboardCard,
     EditTrackModal,
     InfoTrackCard,
-    AddTrackModal
+    AddTrackModal,
+    Users,
+    EditUserModal
   ],
   imports: [
     CommonModule,

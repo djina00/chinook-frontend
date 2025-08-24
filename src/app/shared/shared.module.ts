@@ -39,7 +39,7 @@ import { Spinner } from './components/spinner/spinner';
 import { FeatureCard } from './components/feature-card/feature-card';
 import { DurationPipe } from './pipes/duration-pipe';
 import { FileSizePipe } from './pipes/file-size-pipe';
-import { PricePipe } from './pipes/price.pipe';
+import { PricePipe } from './pipes/price-pipe';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
