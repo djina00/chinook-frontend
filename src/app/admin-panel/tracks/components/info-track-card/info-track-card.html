@@ -131,9 +131,14 @@
     <button mat-stroked-button (click)="closeBottomSheet()">
       Close
     </button>
-    <button mat-raised-button color="accent">
-      <mat-icon class="me-1">shopping_cart</mat-icon>
-      Add to Cart
+    <button mat-raised-button 
+            [color]="isInCart() ? 'primary' : 'accent'"
+            [matTooltip]="isInCart() ? 'Remove from cart' : 'Add to cart'"
+            (click)="toggleCart()">
+      <mat-icon class="me-1">
+        {{ isInCart() ? 'shopping_cart' : 'add_shopping_cart' }}
+      </mat-icon>
+      {{ isInCart() ? 'Remove from Cart' : 'Add to Cart' }}
     </button>
   </div>
 </div>
