@@ -71,9 +71,10 @@
           </div>
           
           <div class="d-grid gap-2">
-            <button mat-raised-button color="primary" (click)="proceedToCheckout()">
-              <mat-icon class="me-1">payment</mat-icon>
-              Proceed to Checkout
+            <button mat-raised-button color="primary" (click)="proceedToCheckout()" [disabled]="isProcessingCheckout">
+              <mat-icon class="me-1" *ngIf="!isProcessingCheckout">payment</mat-icon>
+              <mat-icon class="me-1" *ngIf="isProcessingCheckout">hourglass_empty</mat-icon>
+              {{ isProcessingCheckout ? 'Processing...' : 'Proceed to Checkout' }}
             </button>
             <button mat-stroked-button color="warn" (click)="clearCart()">
               <mat-icon class="me-1">clear</mat-icon>
