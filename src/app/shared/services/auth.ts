@@ -59,7 +59,7 @@ export class AuthService {
 
   setCurrentUser(user: Customer): void {
     console.log('Logged in user data:', user);
-    // Convert RoleId to Role string
+    
     if (user.RoleId === 1) {
       user.Role = 'admin';
     } else if (user.RoleId === 2) {

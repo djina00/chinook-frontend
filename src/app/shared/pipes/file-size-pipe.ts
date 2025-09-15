@@ -13,11 +13,9 @@ export class FileSizePipe implements PipeTransform {
     const units = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
     const unitIndex = Math.floor(Math.log(bytes) / Math.log(1024));
     
-    // Ensure we don't exceed the units array
     const safeUnitIndex = Math.min(unitIndex, units.length - 1);
     const size = bytes / Math.pow(1024, safeUnitIndex);
     
-    // Round to specified precision
     const roundedSize = Math.round(size * Math.pow(10, precision)) / Math.pow(10, precision);
     
     return `${roundedSize} ${units[safeUnitIndex]}`;

@@ -20,7 +20,6 @@ export class Albums implements OnInit {
   tracksLoading = signal<boolean>(false);
   searchQuery = signal<string>('');
 
-  // Computed signal for filtered tracks
   filteredTracks = computed(() => {
     const tracks = this.selectedTracks();
     const query = this.searchQuery().toLowerCase().trim();
@@ -95,7 +94,6 @@ export class Albums implements OnInit {
   }
 
   onTabChanged(event: any): void {
-    // Album tab selected - tabs now start at index 0
     const album = this.albums()[event.index];
     if (album) {
       this.onAlbumSelected(album.AlbumId);
@@ -113,7 +111,6 @@ export class Albums implements OnInit {
     this.searchQuery.set('');
   }
 
-  // Shopping cart methods
   isInCart(trackId: number): boolean {
     return this.cartService.isInCart(trackId);
   }
