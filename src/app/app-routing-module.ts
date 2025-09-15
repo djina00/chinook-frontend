@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { Layout } from './layout/components/layout/layout';
+import { Layout } from './layout/layout';
 import { AuthGuard } from './shared/guards/auth.guard';
 import { UnauthGuard } from './shared/guards/unauth.guard';
 import { AdminGuard } from './shared/guards/admin.guard';
