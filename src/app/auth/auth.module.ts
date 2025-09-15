@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { LoginRoutingModule } from './login-routing-module';
+import { AuthRoutingModule } from './auth-routing.module';
 import { LoginPage } from './login-page/login-page';
 import { SharedModule } from '../shared/shared.module';
 import { RegisterPage } from './register-page/register-page';
@@ -14,8 +14,8 @@ import { RegisterPage } from './register-page/register-page';
   ],
   imports: [
     CommonModule,
-    LoginRoutingModule,
+    AuthRoutingModule,
     SharedModule
   ]
 })
-export class LoginModule { }
+export class AuthModule { }
